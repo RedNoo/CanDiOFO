@@ -1,0 +1,20 @@
+<div class="page_container">
+    <div class="well">
+    <p>
+      <%= gravatar_for @user, size: 80%>
+    </p>
+    <p>
+      Full Name : <%=@user.full_name%>
+    </p>
+    <p>
+      Email : <%=@user.email%>
+    </p>
+    <p>
+      Post Code : <%=@user.post_code%>
+    </p>
+    <hr />
+    <%=link_to "Edit", edit_user_path(@user) ,class:"btn btn-default"%> |
+    <%=link_to "Back to user list", users_path %>
+  </div>
+
+</div>
