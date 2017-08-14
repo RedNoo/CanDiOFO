@@ -7,7 +7,6 @@ class RestaurantRestaurantCuisinesController < ApplicationController
     @restaurant_cuisines = RestaurantCuisine.paginate(page: params[:page], per_page: 2)
   end
 
-
   def new
     @restaurant_cuisine = RestaurantCuisine.new
   end

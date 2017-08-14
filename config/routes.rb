@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   resources :users
   resources :restaurants
 
-
-
   get 'signup' => 'members#new'
 
   get 'login', to: 'sessions#new'
@@ -22,7 +20,9 @@ Rails.application.routes.draw do
 
   get 'restaurant_cuisines/:id', to: 'restaurants#restaurant_cuisines' , as: :restaurant_cuisines
   get 'restaurants/addcuisine/:id', to: 'restaurants#new_cuisine' , as: :new_cuisine
+  get 'restaurants/addcategory/:id', to: 'restaurants#new_category' , as: :new_category
   post 'restaurants/addcuisine/:id', to: 'restaurants#add_cuisine'
+  post 'restaurants/addcategory/:id', to: 'restaurants#add_category'
 
 
   get 'new-restaurants', to: 'restaurants#recently_added'

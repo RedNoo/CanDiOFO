@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-  before_action :set_restaurant, only:[:edit, :update, :show, :destroy, :restaurant_cuisines, :new_cuisine, :add_cuisine]
+  before_action :set_restaurant, only:[:edit, :update, :show, :destroy, :restaurant_cuisines, :new_cuisine, :add_cuisine, :new_category, :add_category]
   before_action :require_adminrestaurant, only:[:destroy]
   before_action :require_user, only:[:new, :create, :index]
 
@@ -85,6 +85,24 @@ class RestaurantsController < ApplicationController
 
   end
 
+
+  def new_category
+    @category = Category.new
+  end
+
+  def add_category
+    @restaurant_category = Category.new(restaurant_category_params)
+  #  @restaurant_category.user_id = current_user.id
+
+    if @restaurant_category.save
+      flash[:success] = "category added to restaurant"
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new_category
+    end
+
+  end
+
   def recently_added
     @restaurants = Restaurant.order('created_at DESC').all.paginate(page: params[:page], per_page: 5)
   end
@@ -101,6 +119,11 @@ class RestaurantsController < ApplicationController
   def restaurant_cuisine_params
     params.require(:restaurant_cuisine).permit( :cuisine_id, :restaurant_id)
   end
+
+  def restaurant_category_params
+    params.require(:category).permit(  :restaurant_id, :title, :line_no)
+  end
+
 
   def require_adminrestaurant
     if !logged_in_restaurant? || !current_restaurant.admin?

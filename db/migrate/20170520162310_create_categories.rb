@@ -2,7 +2,7 @@ class CreateCategories < ActiveRecord::Migration
   def change
     create_table :categories do |t|
       t.string :title
-      t.int :line_no
+      t.integer :line_no
       t.references :restaurant
 
       t.timestamps :created_at

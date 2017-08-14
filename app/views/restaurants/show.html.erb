@@ -1,28 +1,36 @@
 <div class="page_container">
-    <div class="well">
+  <div class="well">
 
     <h2>
-       <%=@restaurant.name%>
+      <%=@restaurant.name%>
     </h2>
-<hr />
+    <hr/>
     <p>
-       <%=@restaurant.address%>
+      <%=@restaurant.address%>
     </p>
     <p>
       <%=@restaurant.post_code%>
     </p>
     <p>
       Cuisine(s):
-
-        <%@restaurant.cuisines.each do |cuisine|  %>
-
-          <%= cuisine.title%>
-        <% end %>
-
+      <%@restaurant.cuisines.each do |cuisine|  %>
+      <%= cuisine.title%>
+      <% end %>
     </p>
-    <hr />
-    <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%> |
-    <%=link_to "Add New Cuisine", new_cuisine_path(@restaurant) ,class:"btn btn-default"%> |
+    <hr/>
+    <p>
+      Categories:
+      <%@restaurant.categories.each do  |category|  %>
+      <%= category.title%>
+      <% end %>
+    </p>
+    <hr/>
+    <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%>
+    |
+    <%=link_to "Add New Cuisine", new_cuisine_path(@restaurant) ,class:"btn btn-default"%>
+    |
+    <%=link_to "Add New Category", new_category_path(@restaurant) ,class:"btn btn-default"%>
+    |
     <%=link_to "Back to restaurant list", restaurants_path %>
   </div>
 
