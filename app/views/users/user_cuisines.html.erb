@@ -1,0 +1,30 @@
+<div class="page_container">
+
+  <div class="col-lg-12 col-md-12">
+    <h1>Your Restaurants</h2>
+    <p>
+      <%=link_to "Create new restaurant", new_restaurant_path,  class:"btn btn-success"%>
+    </p>
+    <p>
+      <%= will_paginate%>
+    </p>
+  </div>
+
+  <%@restaurant.cuisines.each do |cuisine| %>
+    <div class="col-lg-6 col-md-6">
+        <div class="well">
+            <h4><%=cuisine.title%></h4>
+
+            <hr>
+              <%=link_to "Edit", edit_restaurant_path(restaurant),class:"btn btn-primary" %>
+              <%=link_to "Show", restaurant_path(restaurant), class:"btn btn-info"%>
+              <%=link_to "Delete", restaurant_path(restaurant), method: :delete, data: {confirm: "are you sure?"},class:"btn btn-danger" %>
+        </div>
+      </div>
+  <% end %>
+
+  <p>
+  <%= will_paginate%>
+  </p>
+
+</div>

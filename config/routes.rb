@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :restaurants
 
 
+
   get 'signup' => 'members#new'
 
   get 'login', to: 'sessions#new'
@@ -18,6 +19,14 @@ Rails.application.routes.draw do
   get 'loginuser', to: 'user_sessions#new'
   post "loginuser", to: 'user_sessions#create'
   delete 'logoutuser', to: 'user_sessions#destroy'
+
+  get 'restaurant_cuisines/:id', to: 'restaurants#restaurant_cuisines' , as: :restaurant_cuisines
+  get 'restaurants/addcuisine/:id', to: 'restaurants#new_cuisine' , as: :new_cuisine
+  post 'restaurants/addcuisine/:id', to: 'restaurants#add_cuisine'
+
+
+  get 'new-restaurants', to: 'restaurants#recently_added'
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

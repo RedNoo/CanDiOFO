@@ -9,11 +9,9 @@
     <p>
       Email : <%=@user.email%>
     </p>
-    <p>
-      Post Code : <%=@user.post_code%>
-    </p>
+
     <hr />
-    <%=link_to "Edit", edit_user_path(@user) ,class:"btn btn-default"%> |
+    <%=link_to "Edit", edit_user_path(@user) ,class:"btn btn-primary"%> |
     <%=link_to "Back to user list", users_path %>
   </div>
 

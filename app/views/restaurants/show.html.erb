@@ -1,20 +1,29 @@
 <div class="page_container">
     <div class="well">
+
+    <h2>
+       <%=@restaurant.name%>
+    </h2>
+<hr />
     <p>
-      <%= gravatar_for @user, size: 80%>
+       <%=@restaurant.address%>
     </p>
     <p>
-      Full Name : <%=@user.full_name%>
+      <%=@restaurant.post_code%>
     </p>
     <p>
-      Email : <%=@user.email%>
-    </p>
-    <p>
-      Post Code : <%=@user.post_code%>
+      Cuisine(s):
+
+        <%@restaurant.cuisines.each do |cuisine|  %>
+
+          <%= cuisine.title%>
+        <% end %>
+
     </p>
     <hr />
-    <%=link_to "Edit", edit_user_path(@user) ,class:"btn btn-default"%> |
-    <%=link_to "Back to user list", users_path %>
+    <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%> |
+    <%=link_to "Add New Cuisine", new_cuisine_path(@restaurant) ,class:"btn btn-default"%> |
+    <%=link_to "Back to restaurant list", restaurants_path %>
   </div>
 
 </div>

@@ -50,7 +50,7 @@ end
       @member = Member.find(params[:id])
   end
   def member_params
-    params.require(:member).permit(:email,:password)
+    params.require(:member).permit(:email,:password,:full_name, :post_code)
   end
 
 

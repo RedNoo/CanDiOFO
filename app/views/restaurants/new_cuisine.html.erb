@@ -1,0 +1,30 @@
+<div class="col-lg-6 col-md-6 col-xs-6">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= render "shared/errors", obj: @restaurant_cuisine %>
+
+      <%= form_for(@restaurant_cuisine, url: {action: "add_cuisine"}, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+      <%= f.hidden_field :restaurant_id, :value => @restaurant.id %>
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
+            <%= f.label :cuisine %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.select(:cuisine_id, options_from_collection_for_select(@cuisines, 'id', 'title'),{}, class: "form-control") %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit (@restaurant_cuisine.new_record? ? "Add" : "Update"), class: "btn btn-primary"%>
+        </div>
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
