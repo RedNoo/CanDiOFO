@@ -107,6 +107,10 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.order('created_at DESC').all.paginate(page: params[:page], per_page: 5)
   end
 
+  def get_product_by_category
+    @products = Product.find_by category_id:  params[:id]
+  end
+
   private
   def set_restaurant
       @restaurant = Restaurant.find(params[:id])

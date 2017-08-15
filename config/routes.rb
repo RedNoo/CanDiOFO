@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'restaurants/addcategory/:id', to: 'restaurants#new_category' , as: :new_category
   post 'restaurants/addcuisine/:id', to: 'restaurants#add_cuisine'
   post 'restaurants/addcategory/:id', to: 'restaurants#add_category'
+  get 'restaurants/product-list/:id', to: 'restaurants#get_product_by_category', as: :product_list
 
 
   get 'new-restaurants', to: 'restaurants#recently_added'
