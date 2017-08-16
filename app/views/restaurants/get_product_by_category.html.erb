@@ -1,3 +1,14 @@
 
+<%= link_to "Add New Product", new_product_path(@category_id),class:"btn btn-primary" %>
+<br />
+<% if !@products.nil? %>
+<% @products.each do |product| %>
+  <%= product.title %> <br />
+  <%= product.description %>
+  €<%= product.price %><br />
+  <br />
+<% end %>
 
-test test test
+<% elsif %>
+  <span>There is no product added</span>
+<% end %>

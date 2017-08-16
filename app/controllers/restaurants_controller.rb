@@ -85,7 +85,6 @@ class RestaurantsController < ApplicationController
 
   end
 
-
   def new_category
     @category = Category.new
   end
@@ -107,8 +106,33 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.order('created_at DESC').all.paginate(page: params[:page], per_page: 5)
   end
 
+  def area_restaurant
+    @area_code = params[:id]
+    @area_code = @area_code.insert(-4," ")
+    @restaurants = Restaurant.where(post_code: @area_code).order('created_at DESC').all.paginate(page: params[:page], per_page: 5)
+  end
+
   def get_product_by_category
-    @products = Product.find_by category_id:  params[:id]
+    @category_id = params[:id]
+    @products = Product.where(category_id:  params[:id])
+  end
+
+  def new_product
+    @category = Category.find(params[:id])
+    @restaurant = @category.restaurant
+    @product = Product.new
+  end
+
+  def add_product
+    @product = Product.new(restaurant_product_params)
+  #  @restaurant_category.user_id = current_user.id
+
+    if @product.save
+      flash[:success] = "category added to restaurant"
+      redirect_to new_product_path(@product.category_id)
+    else
+      render :new_product
+    end
   end
 
   private
@@ -126,6 +150,10 @@ class RestaurantsController < ApplicationController
 
   def restaurant_category_params
     params.require(:category).permit(  :restaurant_id, :title, :line_no)
+  end
+
+  def restaurant_product_params
+    params.require(:product).permit( :category_id ,:restaurant_id, :title, :line_no, :description, :price)
   end
 
 

@@ -21,7 +21,7 @@
     <p>
       Categories:
       <%@restaurant.categories.each do  |category|  %>
-      <%= category.title%>
+      <%=link_to category.title, category_product_list_path(category)%>
       <% end %>
     </p>
     <hr/>

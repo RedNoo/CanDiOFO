@@ -23,10 +23,18 @@ Rails.application.routes.draw do
   get 'restaurants/addcategory/:id', to: 'restaurants#new_category' , as: :new_category
   post 'restaurants/addcuisine/:id', to: 'restaurants#add_cuisine'
   post 'restaurants/addcategory/:id', to: 'restaurants#add_category'
-  get 'restaurants/product-list/:id', to: 'restaurants#get_product_by_category', as: :product_list
+
+
+  get 'restaurants/product-list/:id', to: 'restaurants#get_product_by_category' , as: :category_product_list
+  get 'restaurants/addproduct/:id', to: 'restaurants#new_product' , as: :new_product
+  post 'restaurants/addproduct/:id', to: 'restaurants#add_product'
 
 
   get 'new-restaurants', to: 'restaurants#recently_added'
+
+  get 'restaurants/area/:id', to: 'restaurants#area_restaurant'
+
+
 
 
   # You can have the root of your site routed with "root"

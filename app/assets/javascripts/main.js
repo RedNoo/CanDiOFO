@@ -1,6 +1,6 @@
 $(function() {
    $(".search-btn").click(function(){
-     alert($(this).parent().find('input[type=text]').val());
+     location.href = $(this).attr('href') + $(this).parent().find('input[type=text]').val().replace(/\s/g, '');
 
    });
 });
