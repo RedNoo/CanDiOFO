@@ -1,7 +1,12 @@
 <%obj.each do |restaurant| %>
-  <div>
+<div class="col-lg-2">
+  <%=link_to restaurant.name, restaurant_path(restaurant)%>
+  <div class="restaurant-list-item">
 
-      <%=link_to restaurant.name, restaurant_path(restaurant)%>
-    
+
+
   </div>
+
+
+</div>
 <% end %>

@@ -1,12 +1,15 @@
 <div class="page_container">
 
-<%= @area_code %>
+  <%= @area_code %>
 
-  <p>
-    <%= will_paginate%>
+<!--  <p>
+    <%= will_paginate(@restaurants, :params => { :id => @area_code_original })%>
   </p>
-  <%= render 'restaurant_list', obj: @restaurants %>
+-->
+  <div class="row">
+    <%= render 'restaurant_list', obj: @restaurants %>
+  </div>
   <p>
-    <%= will_paginate%>
+    <%= will_paginate(@restaurants, :params => { :id => @area_code_original })%>
   </p>
 </div>

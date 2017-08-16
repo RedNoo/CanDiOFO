@@ -103,13 +103,15 @@ class RestaurantsController < ApplicationController
   end
 
   def recently_added
-    @restaurants = Restaurant.order('created_at DESC').all.paginate(page: params[:page], per_page: 5)
+    @restaurants = Restaurant.order('created_at DESC').all.paginate(page: params[:page], per_page: 12)
   end
 
   def area_restaurant
-    @area_code = params[:id]
-    @area_code = @area_code.insert(-4," ")
-    @restaurants = Restaurant.where(post_code: @area_code).order('created_at DESC').all.paginate(page: params[:page], per_page: 5)
+    @area_code_original = params[:id]
+    @area_code =   @area_code_original.clone
+    @area_code.insert(-4," ")
+    @page_param = params[:page]
+    @restaurants = Restaurant.where(post_code: @area_code).order('created_at DESC').all.paginate(page: params[:page], per_page: 12)
   end
 
   def get_product_by_category
