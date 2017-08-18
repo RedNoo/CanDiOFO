@@ -2,11 +2,10 @@
 <div class="col-lg-2">
   <%=link_to restaurant.name, restaurant_path(restaurant)%>
   <div class="restaurant-list-item">
+    <% unless restaurant.logo.blank? %>
 
-
-
+    <%=link_to( image_tag( restaurant.logo_url(:thumb_for_list)), restaurant_path(restaurant)) %>
+    <% end %>
   </div>
-
-
 </div>
 <% end %>

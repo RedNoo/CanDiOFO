@@ -24,12 +24,19 @@
       <%=link_to category.title, category_product_list_path(category)%>
       <% end %>
     </p>
+    Logo: <br />
+<%= image_tag @restaurant.logo_url(:thumb_for_list) %>
+    <p>
+
+    </p>
     <hr/>
     <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%>
     |
     <%=link_to "Add New Cuisine", new_cuisine_path(@restaurant) ,class:"btn btn-default"%>
     |
     <%=link_to "Add New Category", new_category_path(@restaurant) ,class:"btn btn-default"%>
+    |
+    <%=link_to "Add Logo (300x300)", upload_logo_path(@restaurant) ,class:"btn btn-default"%>
     |
     <%=link_to "Back to restaurant list", restaurants_path %>
   </div>

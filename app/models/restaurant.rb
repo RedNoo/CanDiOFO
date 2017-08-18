@@ -4,4 +4,6 @@ class Restaurant < ActiveRecord::Base
   has_many :cuisines , :through => :restaurant_cuisines
   has_many :categories
 
+  mount_uploader :logo, AvatarUploader
+
 end

@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-  before_action :set_restaurant, only:[:edit, :update, :show, :destroy, :restaurant_cuisines, :new_cuisine, :add_cuisine, :new_category, :add_category]
+  before_action :set_restaurant, only:[:edit, :update, :show, :destroy, :restaurant_cuisines, :new_cuisine, :add_cuisine, :new_category, :add_category,:upload_logo,:add_logo]
   before_action :require_adminrestaurant, only:[:destroy]
   before_action :require_user, only:[:new, :create, :index]
 
@@ -137,6 +137,24 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def upload_logo
+
+  end
+
+  def add_logo
+    if @restaurant.update(logo_params)
+
+
+      flash[:success] = "Logo added the restaurant."
+
+      redirect_to restaurant_path(@restaurant)
+
+    else
+      render :edit
+    end
+  end
+
+
   private
   def set_restaurant
       @restaurant = Restaurant.find(params[:id])
@@ -156,6 +174,10 @@ class RestaurantsController < ApplicationController
 
   def restaurant_product_params
     params.require(:product).permit( :category_id ,:restaurant_id, :title, :line_no, :description, :price)
+  end
+
+  def logo_params
+    params.require(:restaurant).permit( :logo)
   end
 
 

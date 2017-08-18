@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
   get 'restaurants/area/:id', to: 'restaurants#area_restaurant'
 
-
+  get 'restaurants/addlogo/:id', to: 'restaurants#upload_logo' , as: :upload_logo
+  post 'restaurants/addlogo/:id', to: 'restaurants#add_logo' ,as: :add_logo
 
 
   # You can have the root of your site routed with "root"

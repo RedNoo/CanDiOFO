@@ -1,0 +1,10 @@
+<div class="page_container">
+  <div class="well">
+    <%= form_for(@restaurant, url: {action: "add_logo"}, :method => :POST, :html => {multipart: true }) do |f| %>
+    <%= @restaurant.id %>
+    <%= f.label :logo %>
+    <%= f.file_field :logo %>
+    <%= f.submit (@restaurant.new_record? ? "Add" : "Update"), class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>
