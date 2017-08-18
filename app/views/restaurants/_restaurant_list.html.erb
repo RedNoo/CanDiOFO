@@ -1,11 +1,27 @@
 <%obj.each do |restaurant| %>
 <div class="col-lg-2">
-  <%=link_to restaurant.name, restaurant_path(restaurant)%>
+  <h1><%=link_to restaurant.name, restaurant_path(restaurant)%></h1>
   <div class="restaurant-list-item">
     <% unless restaurant.logo.blank? %>
 
     <%=link_to( image_tag( restaurant.logo_url(:thumb_for_list)), restaurant_path(restaurant)) %>
     <% end %>
+    <div class="content">
+      <strong>Info:</strong>
+      <span><%= restaurant.address %></span><br/>
+      <span><%= restaurant.open_time %>:00 -
+        <%= restaurant.close_time %>:00</span><br/><br/>
+      <strong>Cuisine(s):</strong>
+      <%restaurant.cuisines.each do |cuisine|  %>
+      <%= cuisine.title%>
+      <%  if cuisine != restaurant.cuisines.last%>
+      ,
+      <% end %>
+      <% end %>
+      <br/>
+      <%=link_to "Order Now", restaurant_path(restaurant)%>
+
+    </div>
   </div>
 </div>
 <% end %>
