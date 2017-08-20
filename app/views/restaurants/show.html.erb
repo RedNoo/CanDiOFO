@@ -1,44 +1,94 @@
 <div class="page_container">
-  <div class="well">
 
-    <h2>
-      <%=@restaurant.name%>
-    </h2>
-    <hr/>
-    <p>
-      <%=@restaurant.address%>
-    </p>
-    <p>
-      <%=@restaurant.post_code%>
-    </p>
-    <p>
-      Cuisine(s):
-      <%@restaurant.cuisines.each do |cuisine|  %>
-      <%= cuisine.title%>
-      <% end %>
-    </p>
-    <hr/>
-    <p>
-      Categories:
-      <%@restaurant.categories.each do  |category|  %>
-      <%=link_to category.title, category_product_list_path(category)%>
-      <% end %>
-    </p>
-    Logo: <br />
-<%= image_tag @restaurant.logo_url(:thumb_for_list) %>
-    <p>
+  <div class="col-lg-2">
+    <div class="restaurant-category">
+      <div class="restaurant-list">
+        <h2>Categories:</h2>
+        <ul>
+          <%@restaurant.categories.each do  |category|  %>
+          <li><%=link_to category.title, category_product_list_path(category)%></li>
+          <% end %>
+          <ul></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="restaurant-detail">
+          <div class="restaurant-info">
+            <div class="row">
+              <div class="col-lg-4">
+                <%= image_tag @restaurant.logo_url(:thumb_for_list) %>
+              </div>
+              <div class="col-lg-8">
+                <div class="restaurant-detail">
+                  <h1>
+                    <%=@restaurant.name%>
+                  </h1>
+                  <span>
+                    <%=@restaurant.address%>
+                    (<%=@restaurant.post_code%>)
+                  </span>
+                  <h2>
+                    Open Hours
+                  </h2>
+                  <span>
+                    <%= @restaurant.open_time %>:<%= @restaurant.open_time_minute %> -
+                    <%= @restaurant.close_time %>:<%= @restaurant.close_time_minute %>
+                  </span>
 
-    </p>
-    <hr/>
-    <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%>
-    |
-    <%=link_to "Add New Cuisine", new_cuisine_path(@restaurant) ,class:"btn btn-default"%>
-    |
-    <%=link_to "Add New Category", new_category_path(@restaurant) ,class:"btn btn-default"%>
-    |
-    <%=link_to "Add Logo (300x300)", upload_logo_path(@restaurant) ,class:"btn btn-default"%>
-    |
-    <%=link_to "Back to restaurant list", restaurants_path %>
-  </div>
+                  <h2>Cuisine(s):</h2>
+                  <%@restaurant.cuisines.each do |cuisine|  %>
+                  <span><%= cuisine.title%></span>
+                  <%  if cuisine != @restaurant.cuisines.last%>
+                  ,
+                  <% end %>
+                  <% end %>
 
-</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <%@restaurant.categories.each do  |category|  %>
+          <div class="restaurant-menus">
+            <h2><%= category.title %></h2>
+
+            <% category.products.each do |product| %>
+            <div class="product-item">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3><%=product.title%></h3>
+                  <p><%=product.description%></p>
+                </div>
+                <div class="col-lg-2">
+                  <div class="price">
+                    <span ><%=product.price%>
+                      <span></div>
+
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+
+              </div>
+              <% end %>
+
+            </div>
+          </div>
+          <div class="col-lg-4">
+
+            <div class="store-owner-buttons">
+              <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%>
+              |
+              <%=link_to "Add New Cuisine", new_cuisine_path(@restaurant) ,class:"btn btn-default"%>
+              |
+              <%=link_to "Add New Category", new_category_path(@restaurant) ,class:"btn btn-default"%>
+              |
+              <%=link_to "Add Logo (300x300)", upload_logo_path(@restaurant) ,class:"btn btn-default"%>
+              |
+              <%=link_to "Back to restaurant list", restaurants_path %>
+            </div>
+
+          </div>
+
+        </div>

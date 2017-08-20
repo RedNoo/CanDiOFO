@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   post 'restaurants/addproduct/:id', to: 'restaurants#add_product'
 
 
-  get 'new-restaurants', to: 'restaurants#recently_added'
+  get 'new-restaurants', to: 'restaurants#recently_added' , as: :new_restaurants_list
 
   get 'restaurants/area/:id', to: 'restaurants#area_restaurant'
 
