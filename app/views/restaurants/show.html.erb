@@ -31,7 +31,8 @@
                     Open Hours
                   </h2>
                   <span>
-                    <%= @restaurant.open_time %>:<%= @restaurant.open_time_minute %> -
+                    <%= @restaurant.open_time %>:<%= @restaurant.open_time_minute %>
+                    -
                     <%= @restaurant.close_time %>:<%= @restaurant.close_time_minute %>
                   </span>
 
@@ -62,8 +63,11 @@
                 </div>
                 <div class="col-lg-2">
                   <div class="price">
-                    <span ><%=product.price%>
+                    <span ><%=number_to_currency(product.price, precision:2) %>
                       <span></div>
+                      <div class="add-product-button">
+                        <img src="/assets/plus-icon.png" / onclick="add_to_cart(<%=@restaurant.id%>, <%=product.id %> )">
+                      </div>
 
                     </div>
                   </div>
@@ -76,6 +80,32 @@
             </div>
           </div>
           <div class="col-lg-4">
+            <div class="chart-detail">
+              <div class="cart-item">
+                <h1>Cart</h1>
+                <div>
+                  <%if @cart.nil? %>
+                  your cart is empty.
+                  <% elsif %>
+
+                  <%@total = 0 %>
+                  <%@cart.cartproducts.each do |cartproduct|  %>
+
+                    <div class="cart-line-item">
+                      <div class="col-lg-8"><%=cartproduct.product.title%></div>
+                      <div class="col-lg-1"><%=cartproduct.productcount%></div>
+                      <div class="col-lg-1"><%=number_to_currency(cartproduct.productcount*cartproduct.product.price, precision:2)%></div>
+                      <div class="col-lg-2 text-right"><img src="/assets/minus-icon.png" / onclick="remove_from_cart(<%=cartproduct.id %> )"></div>
+                    </div>
+                    <%@total += cartproduct.productcount*cartproduct.product.price%>
+
+                  <% end %>
+                    <div class="cart-item-total text-right"> Total : <%=number_to_currency(@total, precision:2)%> </div>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
 
             <div class="store-owner-buttons">
               <%=link_to "Edit", edit_restaurant_path(@restaurant) ,class:"btn btn-default"%>

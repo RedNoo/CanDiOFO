@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   resources :members, except: [:new]
   resources :users
   resources :restaurants
+  resources :carts, :cartproducts
 
   get 'signup' => 'members#new'
 
-  get 'login', to: 'sessions#new'
-  post "login", to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  get 'login', to: 'member_sessions#new'
+  post "login", to: 'member_sessions#create'
+  delete 'logout', to: 'member_sessions#destroy'
 
   get 'loginuser', to: 'user_sessions#new'
   post "loginuser", to: 'user_sessions#create'

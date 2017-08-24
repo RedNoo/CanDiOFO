@@ -45,7 +45,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-
+    @cart = Cart.where('status= 1 and member_id= ?',current_member.id).order('created_at DESC').take
   end
 
   def destroy

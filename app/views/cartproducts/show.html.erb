@@ -1,0 +1,20 @@
+<h1>Cart</h1>
+<div>
+  <%if @cartproducts.nil? %>
+  your cart is empty.
+  <% elsif %>
+    <%@total = 0 %>
+<%@cartproducts.each do |cartproduct|  %>
+<div class="row">
+  <div class="cart-line-item">
+    <div class="col-lg-8"><%=cartproduct.product.title%></div>
+    <div class="col-lg-1"><%=cartproduct.productcount%></div>
+    <div class="col-lg-1"><%=number_to_currency(cartproduct.productcount*cartproduct.product.price, precision:2)%></div>
+    <div class="col-lg-2 text-right"><img src="/assets/minus-icon.png" / onclick="remove_from_cart(<%=cartproduct.id %> )"></div>
+  </div>
+</div>
+  <%@total += cartproduct.productcount*cartproduct.product.price%>
+<% end %>
+    <div class="cart-item-total text-right"> Total :<%=number_to_currency(@total, precision:2)%> </div>
+<% end %>
+</div>
