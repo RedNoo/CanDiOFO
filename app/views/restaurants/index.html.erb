@@ -38,7 +38,10 @@
       <%=link_to "Edit", edit_restaurant_path(restaurant),class:"btn btn-primary" %>
       <%=link_to "Show", restaurant_path(restaurant), class:"btn btn-info"%>
       <%=link_to "Delete", restaurant_path(restaurant), method: :delete, data: {confirm: "are you sure?"},class:"btn btn-danger" %>
-
+      <%=link_to "Add New Cuisine", new_cuisine_path(restaurant) ,class:"btn btn-default"%>
+      <%=link_to "Add New Category", new_category_path(restaurant) ,class:"btn btn-default"%>
+      <%=link_to "Add Logo (300x300)", upload_logo_path(restaurant) ,class:"btn btn-default"%>
+      <%=link_to "Add New Area", restaurant_areas_by_restaurant_path(restaurant) ,class:"btn btn-default"%>
       <% if !current_user.restaurants%>
       <span>There is no restaurant :(</span>
       <% end %>

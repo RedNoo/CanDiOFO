@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-  before_action :set_restaurant, only:[:edit, :update, :show, :destroy, :restaurant_cuisines, :new_cuisine, :add_cuisine, :new_category, :add_category,:upload_logo,:add_logo]
+  before_action :set_restaurant, only:[:edit, :update, :show, :destroy, :restaurant_cuisines, :new_cuisine, :add_cuisine, :new_category, :add_category,:upload_logo,:add_logo, :add_restaurant_area, :new_restaurant_area, :restaurant_areas_by_restaurant]
   before_action :require_adminrestaurant, only:[:destroy]
   before_action :require_user, only:[:new, :create, :index]
 
@@ -45,7 +45,8 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @cart = Cart.where('status= 1 and member_id= ?',current_member.id).order('created_at DESC').take
+
+    @cart = Cart.where('status= 1 and member_id= ?',current_member.id).order('created_at DESC').take if logged_in?
   end
 
   def destroy
@@ -114,7 +115,7 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.where(post_code: @area_code).order('created_at DESC').all.paginate(page: params[:page], per_page: 12)
   end
 
-  def get_product_by_category
+  def restaurant_areas_by_restaurant
     @category_id = params[:id]
     @products = Product.where(category_id:  params[:id])
   end
@@ -130,12 +131,33 @@ class RestaurantsController < ApplicationController
   #  @restaurant_category.user_id = current_user.id
 
     if @product.save
-      flash[:success] = "category added to restaurant"
+      flash[:success] = "product added to restaurant"
       redirect_to new_product_path(@product.category_id)
     else
       render :new_product
     end
   end
+
+  def restaurant_areas_by_restaurant
+    @restaurant_areas = RestaurantArea.where(restaurant_id:  params[:id])
+  end
+
+  def new_restaurant_area
+    @restaurant_area = RestaurantArea.new
+  end
+
+  def add_restaurant_area
+    @restaurant_area = RestaurantArea.new(restaurant_area_params)
+  #  @restaurant_category.user_id = current_user.id
+
+    if @restaurant_area.save
+      flash[:success] = "restaurant area added to restaurant"
+      redirect_to restaurant_areas_by_restaurant_path(@restaurant)
+    else
+      render :new_product
+    end
+  end
+
 
   def upload_logo
 
@@ -161,7 +183,7 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:name,:address,:open_time,:open_time_minute,:close_time,:close_time_minute, :post_code, :cuisine_id)
+    params.require(:restaurant).permit(:name,:address,:open_time,:open_time_minute,:close_time,:close_time_minute, :post_code, :cuisine_id, :has_collection, :has_delivery, :delivery_time)
   end
 
   def restaurant_cuisine_params
@@ -174,6 +196,10 @@ class RestaurantsController < ApplicationController
 
   def restaurant_product_params
     params.require(:product).permit( :category_id ,:restaurant_id, :title, :line_no, :description, :price)
+  end
+
+  def restaurant_area_params
+    params.require(:restaurant_area).permit(:restaurant_id, :post_code, :delivery_fee, :delivery_fee_text)
   end
 
   def logo_params

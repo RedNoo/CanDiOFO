@@ -25,11 +25,13 @@ Rails.application.routes.draw do
   post 'restaurants/addcuisine/:id', to: 'restaurants#add_cuisine'
   post 'restaurants/addcategory/:id', to: 'restaurants#add_category'
 
+  get 'restaurants/area-list/:id', to: 'restaurants#restaurant_areas_by_restaurant' , as: :restaurant_areas_by_restaurant
+  get 'restaurants/add-restaurant-area/:id', to: 'restaurants#new_restaurant_area' , as: :new_restaurant_area
+  post 'restaurants/add-restaurant-area/:id', to: 'restaurants#add_restaurant_area'
 
   get 'restaurants/product-list/:id', to: 'restaurants#get_product_by_category' , as: :category_product_list
   get 'restaurants/addproduct/:id', to: 'restaurants#new_product' , as: :new_product
   post 'restaurants/addproduct/:id', to: 'restaurants#add_product'
-
 
   get 'new-restaurants', to: 'restaurants#recently_added' , as: :new_restaurants_list
 

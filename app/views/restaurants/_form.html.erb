@@ -1,89 +1,121 @@
 <div class="col-lg-6 col-md-6 col-xs-6">
   <div class="row">
     <div class="col-xs-12">
-<%= render "shared/errors", obj: @restaurant %>
+      <%= render "shared/errors", obj: @restaurant %>
 
-<%= form_for(@restaurant, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-<div class="form-group">
-  <div class="col-xs-2">
-      <div class="control-label">
-          <%= f.label :name %>
+      <%= form_for(@restaurant, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
+            <%= f.label :name %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.text_field :name, class: "form-control", placeholder: "name", autofocus: true %>
+        </div>
       </div>
-  </div>
-  <div class="col-xs-10">
-    <%= f.text_field :name, class: "form-control", placeholder: "name", autofocus: true %>
-  </div>
-</div>
-  <div class="form-group">
-    <div class="col-xs-2">
-        <div class="control-label">
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
             <%= f.label :address %>
+          </div>
         </div>
-    </div>
-    <div class="col-xs-10">
-      <%= f.text_field :address, class: "form-control", placeholder: "address", autofocus: true %>
-    </div>
-  </div>
+        <div class="col-xs-10">
+          <%= f.text_field :address, class: "form-control", placeholder: "address", autofocus: true %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <div class="col-xs-2">
-        <div class="control-label">
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
             <%= f.label :post_code %>
+          </div>
         </div>
-    </div>
-    <div class="col-xs-10">
-      <%= f.text_field :post_code, class: "form-control", placeholder: "post code", autofocus: true %>
-    </div>
-  </div>
-<% if @restaurant.new_record? %>
-  <div class="form-group">
-    <div class="col-xs-2">
-        <div class="control-label">
+        <div class="col-xs-10">
+          <%= f.text_field :post_code, class: "form-control", placeholder: "post code", autofocus: true %>
+        </div>
+      </div>
+      <% if @restaurant.new_record? %>
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
             <%= f.label :cuisine %>
+          </div>
         </div>
-    </div>
-    <div class="col-xs-10">
-      <%= select_tag(:cuisine_id, options_from_collection_for_select(@cuisines, 'id', 'title'), class: "form-control") %>
+        <div class="col-xs-10">
+          <%= select_tag(:cuisine_id, options_from_collection_for_select(@cuisines, 'id', 'title'), class: "form-control") %>
+        </div>
+      </div>
+      <% end %>
 
-    </div>
-  </div>
-<% end %>
-
-  <div class="form-group">
-    <div class="col-xs-2">
-        <div class="control-label">
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
             <%= f.label :open_time %>
+          </div>
         </div>
-    </div>
-    <div class="col-xs-3">
-      <%= f.text_field :open_time, class: "form-control", placeholder: " hour" %>
-    </div>
-    <div class="col-xs-3">
-      <%= f.text_field :open_time_minute, class: "form-control", placeholder: " minute" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-xs-2">
-        <div class="control-label">
+        <div class="col-xs-3">
+          <%= f.text_field :open_time, class: "form-control", placeholder: " hour" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.text_field :open_time_minute, class: "form-control", placeholder: " minute" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
             <%= f.label :close_time %>
+          </div>
         </div>
-    </div>
-    <div class="col-xs-3">
-      <%= f.text_field :close_time, class: "form-control", placeholder: " hour" %>
-    </div>
-    <div class="col-xs-3">
-      <%= f.text_field :close_time_minute, class: "form-control", placeholder: "minute" %>
+        <div class="col-xs-3">
+          <%= f.text_field :close_time, class: "form-control", placeholder: " hour" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.text_field :close_time_minute, class: "form-control", placeholder: "minute" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
+            <%= f.label :has_collection %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.check_box :has_collection, {class: "xx"}, "true","false"%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
+            <%= f.label :has_delivery %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.check_box :has_delivery, {class: "xx"}, "true","false" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
+            <%= f.label :delivery_time %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.text_field :delivery_time, class: "form-control", placeholder: "eg: 40-60 min", autofocus: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit (@restaurant.new_record? ? "Add" : "Update"), class: "btn btn-primary"%>
+        </div>
+      </div>
+
+      <% end %>
+
     </div>
   </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit (@restaurant.new_record? ? "Add" : "Update"), class: "btn btn-primary"%>
-    </div>
-  </div>
-
-<% end %>
-
-</div>
-</div>
 </div>

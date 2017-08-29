@@ -141,6 +141,30 @@ a:visited {
 
 }
 
+.collection-delivery{
+  .collaction-delivery-detail {
+    height: 100%;
+    min-height: 10px;
+    margin: 0 0 30px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    text-align: center;
+
+  }
+  span {
+    margin: 0 30px 10px 5px;
+    font-size: 16px;
+  }
+
+   .delivery_time {
+     color:#afafaf;
+   }
+}
+
 .chart-detail{
   .cart-item {
     height: 100%;

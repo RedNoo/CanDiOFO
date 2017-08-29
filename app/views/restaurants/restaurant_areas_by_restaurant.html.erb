@@ -1,0 +1,14 @@
+
+<%= link_to "Add New Area (Post Code)", new_restaurant_area_path(@restaurant),class:"btn btn-primary" %>
+<br />
+<% if !@restaurant_areas.nil? %>
+<% @restaurant_areas.each do |restaurant_area| %>
+  <%= restaurant_area.post_code %> <br />
+  <%= restaurant_area.delivery_fee %>
+  €<%= restaurant_area.delivery_fee_text %><br />
+  <br />
+<% end %>
+
+<% elsif %>
+  <span>There is no area added</span>
+<% end %>

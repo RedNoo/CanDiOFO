@@ -80,6 +80,19 @@
             </div>
           </div>
           <div class="col-lg-4">
+            <div class="collection-delivery">
+              <div class="collaction-delivery-detail">
+                <div>
+                  <%=radio_button_tag 'collection-delivery', 'Collection', @restaurant.has_collection,disabled:!@restaurant.has_collection %>
+                  <span>Collection</span>
+                  <%=radio_button_tag 'collection-delivery', 'Delivery', false,disabled:!@restaurant.has_delivery%>
+                  <span>Delivery</span>
+                </div>
+                <div class="delivery_time">Delivery Time :
+                  <%=@restaurant.delivery_time%>
+                  *</div>
+              </div>
+            </div>
             <div class="chart-detail">
               <div class="cart-item">
                 <h1>Cart</h1>
@@ -91,16 +104,19 @@
                   <%@total = 0 %>
                   <%@cart.cartproducts.each do |cartproduct|  %>
 
-                    <div class="cart-line-item">
-                      <div class="col-lg-8"><%=cartproduct.product.title%></div>
-                      <div class="col-lg-1"><%=cartproduct.productcount%></div>
-                      <div class="col-lg-1"><%=number_to_currency(cartproduct.productcount*cartproduct.product.price, precision:2)%></div>
-                      <div class="col-lg-2 text-right"><img src="/assets/minus-icon.png" / onclick="remove_from_cart(<%=cartproduct.id %> )"></div>
-                    </div>
-                    <%@total += cartproduct.productcount*cartproduct.product.price%>
+                  <div class="cart-line-item">
+                    <div class="col-lg-8"><%=cartproduct.product.title%></div>
+                    <div class="col-lg-1"><%=cartproduct.productcount%></div>
+                    <div class="col-lg-1"><%=number_to_currency(cartproduct.productcount*cartproduct.product.price, precision:2)%></div>
+                    <div class="col-lg-2 text-right"><img src="/assets/minus-icon.png" / onclick="remove_from_cart(<%=cartproduct.id %> )"></div>
+                  </div>
+                  <%@total += cartproduct.productcount*cartproduct.product.price%>
 
                   <% end %>
-                    <div class="cart-item-total text-right"> Total : <%=number_to_currency(@total, precision:2)%> </div>
+                  <div class="cart-item-total text-right">
+                    Total :
+                    <%=number_to_currency(@total, precision:2)%>
+                  </div>
                   <% end %>
 
                 </div>
