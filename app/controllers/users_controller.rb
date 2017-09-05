@@ -16,12 +16,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    #render plain: params[:user].inspect
     @user = User.new(user_params)
-    #@postcode = Postcodelatlng.find_by(postcode: @user.post_code  )
-
-    #@user.lat = @postcode.latitude
-    #@user.lng = @postcode.longitude
 
     if @user.save
       session[:user_id] = @user.id

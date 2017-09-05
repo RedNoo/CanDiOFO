@@ -1,6 +1,7 @@
 
 <%= link_to "Add New Area (Post Code)", new_restaurant_area_path(@restaurant),class:"btn btn-primary" %>
 <br />
+
 <% if !@restaurant_areas.nil? %>
 <% @restaurant_areas.each do |restaurant_area| %>
   <%= restaurant_area.post_code %> <br />

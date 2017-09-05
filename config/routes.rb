@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   get 'new-restaurants', to: 'restaurants#recently_added' , as: :new_restaurants_list
 
-  get 'restaurants/area/:id', to: 'restaurants#area_restaurant'
+  get 'restaurants/area/:id', to: 'restaurants#area_restaurant', as: :restaurant_list_by_area
 
   get 'restaurants/addlogo/:id', to: 'restaurants#upload_logo' , as: :upload_logo
   post 'restaurants/addlogo/:id', to: 'restaurants#add_logo' ,as: :add_logo

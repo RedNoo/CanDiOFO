@@ -1,7 +1,5 @@
 class MembersController < ApplicationController
-
-  before_action :set_member, only:[:edit, :update, :show, :destroy]
-
+  before_action :set_member, only: %i[edit update show destroy]
 
   def index
     @members = Member.paginate(page: params[:page], per_page: 2)
@@ -11,47 +9,47 @@ class MembersController < ApplicationController
     @member = Member.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    #render plain: params[:member].inspect
+    # render plain: params[:member].inspect
     @member = Member.new(member_params)
     if @member.save
       session[:member_id] = @member.id
-      flash[:success] = "Welcome to the CanDiTicket"
-      redirect_to member_path(@member)
+      flash[:success] = 'Welcome to the CanDiTicket'
+      @area_code_original = member_params[:post_code]
+      @area_code =   @area_code_original.clone
+      @area_code = @area_code.tr(' ', '')
+      redirect_to restaurant_list_by_area_path(@area_code)
     else
       render :new
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @member.destroy
-    flash[:notice] = "Member was successfully deleted."
+    flash[:notice] = 'Member was successfully deleted.'
     redirect_to members_path
   end
 
-def update
-  if @member.update(member_params)
-    flash[:notice] = "Member was successfully updated."
-    redirect_to member_path(@member)
-  else
-    render :edit
+  def update
+    if @member.update(member_params)
+      flash[:notice] = 'Member was successfully updated.'
+      redirect_to member_path(@member)
+    else
+      render :edit
+    end
   end
-end
-
 
   private
+
   def set_member
-      @member = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
+
   def member_params
-    params.require(:member).permit(:email,:password,:full_name, :post_code)
+    params.require(:member).permit(:email, :password, :full_name, :post_code)
   end
-
-
 end

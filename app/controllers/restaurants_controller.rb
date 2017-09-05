@@ -112,7 +112,9 @@ class RestaurantsController < ApplicationController
     @area_code =   @area_code_original.clone
     @area_code.insert(-4," ")
     @page_param = params[:page]
-    @restaurants = Restaurant.where(post_code: @area_code).order('created_at DESC').all.paginate(page: params[:page], per_page: 12)
+    #@restaurants =RestaurantArea.where(post_code: @area_code).order('created_at DESC').all.paginate(page: params[:page], per_page: 12)
+    @restaurants =Restaurant.joins(:restaurant_areas).where(restaurant_areas: {post_code: @area_code}).order('created_at DESC').all.paginate(page: params[:page], per_page: 12)
+    
   end
 
   def restaurant_areas_by_restaurant

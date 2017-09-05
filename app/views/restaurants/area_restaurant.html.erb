@@ -1,15 +1,13 @@
 <div class="page_container">
-
-  <%= @area_code %>
-
+  <div class="col-lg-12">
+    Restaurants in <strong><%= @area_code %></strong> area. <br /><br />
+  </div>
 <!--  <p>
     <%= will_paginate(@restaurants, :params => { :id => @area_code_original })%>
   </p>
 -->
-  <div class="row">
-    <%= render 'restaurant_list', obj: @restaurants %>
-  </div>
-  <p>
+
+    <%= render 'restaurant_list_new', obj: @restaurants %>
     <%= will_paginate(@restaurants, :params => { :id => @area_code_original })%>
-  </p>
+
 </div>
