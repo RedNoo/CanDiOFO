@@ -118,6 +118,10 @@
                     Total :
                     <%=number_to_currency(@total, precision:2)%>
                   </div>
+
+                  <div class="checkout text-right">
+                    <a class="btn btn-success" onclick="checkout_now(<%=@cart.id%>)">Checkout</a>
+                  </div>
                   <% end %>
 
                 </div>

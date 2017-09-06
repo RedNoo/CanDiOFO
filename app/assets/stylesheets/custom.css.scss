@@ -7,6 +7,10 @@
    margin: 0 !important;
 }
 
+.btn-success{
+  color: #fff !important;
+}
+
 h1 {
   font-size: 14px;
 }
@@ -102,6 +106,7 @@ a:visited {
 
       .add-product-button{
         margin-top: 10px;
+        cursor: pointer;
           img{
             width: 32px;
           }
@@ -183,6 +188,10 @@ a:visited {
     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
     box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+    .checkout{
+      margin: 15px;
+    }
 
   }
 

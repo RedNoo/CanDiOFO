@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users
   resources :restaurants
   resources :carts, :cartproducts
+  resources :orders
 
   get 'signup' => 'members#new'
 
