@@ -26,10 +26,7 @@ before_action :require_member, only:[:new, :create, :index, :edit, :show, :destr
        format.json { render json: {'result': 'NOK'}}
        #format.html { render nothing: true, notice: 'Update SUCCESSFUL!' }
      end
-
     end
-
-
   end
 
   def show

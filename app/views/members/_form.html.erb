@@ -45,6 +45,16 @@
         </div>
       </div>
       <div class="form-group">
+        <div class="col-xs-2">
+          <div class="control-label">
+            <%= f.label :address %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.text_field :address, class: "form-control", placeholder: "address" %>
+        </div>
+      </div>
+      <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <%= f.submit (@member.new_record? ? "Sign Up" : "Update Member"), class: "btn btn-primary"%>
         </div>
